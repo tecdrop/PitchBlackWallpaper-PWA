@@ -8,6 +8,7 @@ const SIGNATURE = [137, 80, 78, 71, 13, 10, 26, 10];
 const IHDR = [73, 72, 68, 82];
 
 const PLTE = [80, 76, 84, 69];
+const IDAT = [73, 68, 65, 84];
 const IEND = [73, 69, 78, 68];
 
 /**
@@ -45,10 +46,10 @@ export class OneColorPngWriter {
 
 
     test() {
-        const buffer = new ArrayBuffer(100);
-        console.log(buffer);
+        this.buffer = new ArrayBuffer(100);
+        console.log(this.buffer);
 
-        this.bufferHelper = new BufferHelper(buffer);
+        this.bufferHelper = new BufferHelper(this.buffer);
         this.bufferHelper.logOffset();
 
         // Write PNG signature
@@ -60,11 +61,14 @@ export class OneColorPngWriter {
         // Write PLTE chunk (must appear before IDAT)
         this.writePLTEChunk();
 
+        // Write IDAT chunk
+        this.writeIDATChunks();
+
         // Write IEND chunk
         this.writeIENDChunk();
 
 
-        console.log(buffer);
+        console.log(this.buffer);
         this.bufferHelper.logOffset();
 
     }
@@ -110,6 +114,42 @@ export class OneColorPngWriter {
     }
 
     /**
+     * Writes the IDAT, the image data chunks.
+     * @returns {void}
+     */
+    writeIDATChunks() {
+
+        // Calculate number of bytes to write per row
+        const samplesPerByte = 8 / BIT_DEPTH;
+        const bytesPerRow = (this.width + samplesPerByte - 1) / samplesPerByte;
+
+        // Because we have a palette with a single color, the image data is 0 - entry 0 in the palette
+        // The image data row is automatically initialized to 0 just by allocating it
+        // byte[] lineOut = new byte[bytesPerRow];
+        const data = new Uint8Array(bytesPerRow * this.height);
+
+        const deflate = new Zlib.Deflate(data);
+        const compressed = deflate.compress();
+
+        // Write mHeight rows of image data
+        // for (let y = 0; y < this.height; y++) {
+        //     defOut.write(FILTER_NONE);
+        //     defOut.write(lineOut, 0, bytesPerRow);
+        // }
+
+
+        // Chunk size
+        this.bufferHelper.writeUint32(compressed.length);
+        console.log(`compressed: ${compressed}`);
+
+        this.bufferHelper.resetCRC();
+        this.bufferHelper.writeByteArray(IDAT);
+        this.bufferHelper.writeByteArray(compressed);
+        this.bufferHelper.writeCRC();
+    }
+
+
+    /**
      * Writes the IEND, the last chunk in a PNG datastream.
      * @returns {void}
      */
@@ -120,5 +160,10 @@ export class OneColorPngWriter {
         this.bufferHelper.resetCRC();
         this.bufferHelper.writeByteArray(IEND);
         this.bufferHelper.writeCRC();
+    }
+
+    getObjectURL() {
+        const blob = new Blob([this.buffer], {type: "image/png"});
+        return URL.createObjectURL(blob);
     }
 }
