@@ -1,0 +1,37 @@
+{
+    "name": "pitchblackwallpaperpwa",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "author": "Tecdrop",
+    "license": "MIT",
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "es6": true
+        },
+        "extends": "eslint:all",
+        "parserOptions": {
+            "sourceType": "module"
+        },
+        "rules": {
+            "array-element-newline": "off",
+            "arrow-parens": ["error", "as-needed"],
+            "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+            "dot-location": "off",
+            "func-style": "off",
+            "linebreak-style": ["error", "windows"],
+            "max-len": ["error", 140],
+            "max-statements": ["error", { "max": 20 }],
+            "max-statements-per-line": ["error", { "max": 3 }],
+            "multiline-ternary": ["error", "always-multiline"],
+            "no-extra-parens": ["error", "all", { "nestedBinaryExpressions": false }],
+            "no-plusplus": "off",
+            "no-ternary": "off",
+            "no-magic-numbers": ["error", { "ignore": [0, 1, 2] }], 
+            "one-var": "off",
+            "padded-blocks": "off",
+            "space-before-function-paren": "off"
+        }
+    }
+}
