@@ -46,7 +46,11 @@ export class OneColorPngWriter {
 
 
     test() {
-        this.buffer = new ArrayBuffer(100);
+
+        this.prepareIDATData();
+        console.log(this.compressed);
+
+        this.buffer = new ArrayBuffer(72 + this.compressed.length);
         console.log(this.buffer);
 
         this.bufferHelper = new BufferHelper(this.buffer);
@@ -113,6 +117,15 @@ export class OneColorPngWriter {
         this.bufferHelper.writeCRC();
     }
 
+    prepareIDATData() {
+        const pixelsPerByte = 8 / BIT_DEPTH;
+        const bytesPerRow = Math.trunc((this.width + pixelsPerByte - 1) / pixelsPerByte) + 1;
+        const data = new Uint8Array(bytesPerRow * this.height);
+
+        const deflate = new Zlib.Deflate(data, { compressionType: Zlib.Deflate.CompressionType.FIXED });
+        this.compressed = deflate.compress();
+    }
+
     /**
      * Writes the IDAT, the image data chunks.
      * @returns {void}
@@ -120,31 +133,31 @@ export class OneColorPngWriter {
     writeIDATChunks() {
 
         // Calculate number of bytes to write per row
-        const samplesPerByte = 8 / BIT_DEPTH;
-        const bytesPerRow = (this.width + samplesPerByte - 1) / samplesPerByte;
+        // const pixelsPerByte = 8 / BIT_DEPTH;
+        // const bytesPerRow = (this.width + samplesPerByte - 1) / samplesPerByte;
+        // const bytesPerRow = Math.trunc((this.width + samplesPerByte - 1) / samplesPerByte);
+        // const bytesPerRow = Math.trunc((this.width + pixelsPerByte - 1) / pixelsPerByte) + 1;
+        // console.log(bytesPerRow);
 
         // Because we have a palette with a single color, the image data is 0 - entry 0 in the palette
         // The image data row is automatically initialized to 0 just by allocating it
         // byte[] lineOut = new byte[bytesPerRow];
-        const data = new Uint8Array(bytesPerRow * this.height);
+        // const data = new Uint8Array(bytesPerRow * this.height);
 
-        const deflate = new Zlib.Deflate(data);
-        const compressed = deflate.compress();
-
-        // Write mHeight rows of image data
-        // for (let y = 0; y < this.height; y++) {
-        //     defOut.write(FILTER_NONE);
-        //     defOut.write(lineOut, 0, bytesPerRow);
-        // }
-
+        // const deflate = new Zlib.Deflate(data);
+        // const deflate = new Zlib.Deflate(data, { compressionType: Zlib.Deflate.CompressionType.FIXED });
+        // const compressed = deflate.compress();
 
         // Chunk size
-        this.bufferHelper.writeUint32(compressed.length);
-        console.log(`compressed: ${compressed}`);
+        this.bufferHelper.writeUint32(this.compressed.length);
+        // console.log(`compressed: ${compressed} length: ${compressed.length}`);
 
         this.bufferHelper.resetCRC();
         this.bufferHelper.writeByteArray(IDAT);
-        this.bufferHelper.writeByteArray(compressed);
+        // this.bufferHelper.logOffset();
+
+        this.bufferHelper.writeByteArray(this.compressed);
+        // this.bufferHelper.logOffset();
         this.bufferHelper.writeCRC();
     }
 
