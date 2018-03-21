@@ -6,10 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body>
-    <a href="#" id="download">Download</a>
+
+    <div class="page-wrapper">
+
+        <header class="toolbar">
+            <label>Size:</label>
+            <input type="text" class="toolbar__input" id="wallpaperSize" value="1080x1920" size="10" />
+
+            <menu class="toolbar__actions">
+                    <li id="shuffle" class="toolbar__action icon--rotate" title="Width <=> Height"></li>
+                    <!-- <li title="App info">
+                        <a href="https://github.com/appliberated/HelloWorldPWA" target="_blank" class="toolbar__action icon--info"></a>
+                    </li> -->
+                </menu>
+        </header>
+
+        <main class="main">
+            <a class="button" href="#" id="download">Download Wallpaper</a>
+
+        </main>
+
+        <footer class="footer">
+            <details>
+                <summary>Common sizes</summary>
+                <p class="link-list">
+                    <!-- <a href="#">720x1280</a> -->
+                    <a href="#">750x1334</a>
+                    <!-- <a href="#">1080x1920</a> -->
+                    <a href="#">1024x768</a>
+                    <a href="#">1280x720</a>
+                    <a href="#">1280x800</a>
+                    <a href="#">1280x1024</a>
+                    <a href="#">1366x768</a>
+                    <a href="#">1440x2560</a>
+                    <a href="#">1920x1080</a>
+                    <a href="#">1920x1200</a>
+                    <a href="#">2160x1920</a>
+                    <a href="#">2160x3840</a>
+                    <a href="#">2560x1440</a>
+                </p>
+            </details>
+        </footer>
+
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/zlibjs@0.3.1/bin/deflate.min.js"></script>
     <script type="module" src="/scripts/main.js"></script>

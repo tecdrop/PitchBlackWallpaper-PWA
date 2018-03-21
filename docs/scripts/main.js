@@ -10,3 +10,7 @@ pngWriter.write();
 const downloadLinkEl = document.getElementById("download");
 downloadLinkEl.download = "test.png";
 downloadLinkEl.href = pngWriter.getObjectURL();
+
+const width = window.screen.width * window.devicePixelRatio;
+const height = window.screen.height * window.devicePixelRatio;
+console.log(`width ${width} height ${height}`);
