@@ -1,6 +1,5 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable no-bitwise */
-/* eslint-disable no-magic-numbers */
 /* eslint-disable id-length */
 /* eslint-disable no-extra-parens */
 

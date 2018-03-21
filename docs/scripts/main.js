@@ -4,8 +4,8 @@
 import {OneColorPngWriter} from "/scripts/OneColorPngWriter.js";
 
 
-const pngWriter = new OneColorPngWriter(1000, 1000, [0, 0, 0]);
-pngWriter.test();
+const pngWriter = new OneColorPngWriter(1920, 1080, [0, 0, 0]);
+pngWriter.write();
 
 const downloadLinkEl = document.getElementById("download");
 downloadLinkEl.download = "test.png";

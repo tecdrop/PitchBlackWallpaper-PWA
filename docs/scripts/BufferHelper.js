@@ -12,15 +12,9 @@ export class BufferHelper {
         this.dataView = new DataView(buffer);
     }
 
-    logOffset() {
-        console.log(`offset: ${this.offset}`);
+    getOffset() {
+        return this.offset;
     }
-
-    // writeString(value) {
-    //     for (const char of value) {
-    //         this.uint8Buf[this.offset++] = char.charCodeAt(0);
-    //     }
-    // }
 
     writeByteArray(value) {
         this.uint8Buf.set(value, this.offset);
@@ -45,6 +39,5 @@ export class BufferHelper {
         const crc = crc32(this.uint8Buf, this.crcStart, this.offset);
         this.writeUint32(crc);
         return crc;
-
     }
 }
