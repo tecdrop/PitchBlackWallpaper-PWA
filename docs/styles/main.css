@@ -44,6 +44,7 @@ a {
     border: none;
     padding-bottom: 0.5rem;
     border-bottom-style: solid;
+    border-bottom-width: 1px;
     margin: 0 1rem;
     /* text-align: center; */
 }

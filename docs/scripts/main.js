@@ -3,8 +3,8 @@
 
 import {OneColorPngWriter} from "/scripts/OneColorPngWriter.js";
 
-
-const pngWriter = new OneColorPngWriter(1920, 1080, [0, 0, 0]);
+console.log("test");
+const pngWriter = new OneColorPngWriter(3000, 3000, [0, 0, 0]);
 pngWriter.write();
 
 const downloadLinkEl = document.getElementById("download");

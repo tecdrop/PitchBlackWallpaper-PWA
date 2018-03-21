@@ -5,6 +5,9 @@
     "keywords": [],
     "author": "Tecdrop",
     "license": "MIT",
+    "scripts": {
+        "workbox": "workbox generateSW"
+    },
     "eslintConfig": {
         "env": {
             "browser": true,

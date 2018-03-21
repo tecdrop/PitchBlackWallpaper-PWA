@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Download Pitch Black Wallpaper</title>
+    <meta name="theme-color" content="#db5945">
 
+    <link rel="manifest" href="manifest.json"></link>
     <link rel="stylesheet" href="/styles/normalize.css">
     <link rel="stylesheet" href="/styles/main.css">
 </head>
@@ -20,11 +22,11 @@
             <input type="text" class="toolbar__input" id="wallpaperSize" value="1080x1920" size="10" />
 
             <menu class="toolbar__actions">
-                    <li id="shuffle" class="toolbar__action icon--rotate" title="Width <=> Height"></li>
-                    <!-- <li title="App info">
+                <li id="shuffle" class="toolbar__action icon--rotate" title="Width <=> Height"></li>
+                <!-- <li title="App info">
                         <a href="https://github.com/appliberated/HelloWorldPWA" target="_blank" class="toolbar__action icon--info"></a>
                     </li> -->
-                </menu>
+            </menu>
         </header>
 
         <main class="main">
@@ -58,6 +60,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/zlibjs@0.3.1/bin/deflate.min.js"></script>
     <script type="module" src="/scripts/main.js"></script>
+
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </body>
 
 </html>
