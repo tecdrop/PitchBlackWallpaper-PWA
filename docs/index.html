@@ -18,18 +18,16 @@
 
         <header class="toolbar">
             <label>Size:</label>
-            <input type="text" class="toolbar__input" id="wallpaperSize" value="1080x1920" size="10" />
+            <input type="text" class="toolbar__input" id="sizeInput" value="1080x1920" size="10" />
 
             <menu class="toolbar__actions">
-                <li id="shuffle" class="toolbar__action icon--rotate" title="Width <=> Height"></li>
-                <!-- <li title="App info">
-                        <a href="https://github.com/appliberated/HelloWorldPWA" target="_blank" class="toolbar__action icon--info"></a>
-                    </li> -->
+                <li id="shuffle" class="toolbar__action icon--rotate" title=""></li>
             </menu>
         </header>
 
         <main class="main">
-            <a class="button" href="#" id="download">Download Wallpaper</a>
+            <button id="downloadButton" class="button">Download Wallpaper</button>
+            <a id="downloadLink" class="hidden" href="#">Download Wallpaper</a>
 
         </main>
 
@@ -37,9 +35,7 @@
             <details>
                 <summary>Common sizes</summary>
                 <p class="link-list">
-                    <!-- <a href="#">720x1280</a> -->
                     <a href="#">750x1334</a>
-                    <!-- <a href="#">1080x1920</a> -->
                     <a href="#">1024x768</a>
                     <a href="#">1280x720</a>
                     <a href="#">1280x800</a>

@@ -16,11 +16,16 @@ a {
 
 .button {
     background: #5A5A5A;
+    border: none;
     border-radius: 2px;
     color: white;
     display: inline-block;
     text-decoration: none;
     padding: 1rem 2rem;
+}
+
+.hidden {
+    display: none;
 }
 
 .page-wrapper {

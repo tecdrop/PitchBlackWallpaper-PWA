@@ -62,6 +62,8 @@ export class OneColorPngWriter {
      * @returns {void}
      */
     write() {
+        console.log(`Starting to write a ${this.width} x ${this.height} PNG image`);
+
         // Generate the compressed PNG image data
         this.generateImageData();
 

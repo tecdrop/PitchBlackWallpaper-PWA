@@ -23,7 +23,7 @@ importScripts(
 self.__precacheManifest = [
   {
     "url": "index.html",
-    "revision": "8387cd2e3166de047b25991a750a4b77"
+    "revision": "5f143067e8fee946c6509cec3620624a"
   },
   {
     "url": "scripts/BufferHelper.js",
@@ -35,15 +35,19 @@ self.__precacheManifest = [
   },
   {
     "url": "scripts/main.js",
-    "revision": "001194de52700d28dbbbff9265d828b5"
+    "revision": "30a260aebdb0e0f78bce488cf2e78bb3"
   },
   {
     "url": "scripts/OneColorPngWriter.js",
-    "revision": "c545fd1daf5df21aca0497b1f9bb59d3"
+    "revision": "91a3da48e9544ec3e8d7d1204b4d0484"
+  },
+  {
+    "url": "scripts/utils.js",
+    "revision": "137374a92d904be5b14433d2b1136c63"
   },
   {
     "url": "styles/main.css",
-    "revision": "61125e18c712549d3d77e9450574858d"
+    "revision": "5b7138a3b482d2496e5da2ffb8820ccd"
   },
   {
     "url": "styles/normalize.css",
