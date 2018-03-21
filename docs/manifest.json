@@ -6,7 +6,7 @@
     "short_name": "Download a Pitch Black Wallpaper",
     "scope": "/",
     "start_url": "/",
-    "display": "standalone",
+    "display": "minimal-ui",
     "orientation": "any",
     "theme_color": "#000000",
     "background_color": "#000000",
